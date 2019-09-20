@@ -74,8 +74,8 @@ class App extends Component {
             </select>
             <label htmlFor="genres">Genres:</label>
             <select
-              id="genres"
-              name="genres"
+              id="genre"
+              name="genre"
               onChange={e => this.setGenre(e.target.value)}
             >
               <option value="">None</option>

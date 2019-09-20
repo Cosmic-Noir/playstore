@@ -7,10 +7,10 @@ const app = express();
 app.use(morgan("common"));
 app.use(cors());
 
-let apps = require("./appData/app-data");
+let list = require("./appData/app-data");
 
 app.get("/apps", (req, res) => {
-  const { sort, genres } = req.query;
+  const { sort, genre } = req.query;
 
   if (sort) {
     if (!["Rating", "App"].includes(sort)) {
@@ -23,12 +23,13 @@ app.get("/apps", (req, res) => {
       return a[sort] > b[sort] ? 1 : a[sort] < b[sort] ? -1 : 0;
     });
   }
+  let apps = list;
 
-  if (genres) {
+  if (genre) {
     if (!["Action", "Puzzle", "Strategy", "Casual", "Arcade", "Card"]) {
       return res.status(400).send("Genre must be one of the options");
     }
-    apps = apps.filter(app => app.Genres.includes(genres));
+    apps = apps.filter(app => app.Genres.includes(genre));
     console.log("A genre was selected");
   }
 
