@@ -68,8 +68,8 @@ class App extends Component {
               onChange={e => this.setSort(e.target.value)}
             >
               <option value="">None</option>
-              <option value="rating">Rating</option>
-              <option value="app">App</option>
+              <option value="Rating">Rating</option>
+              <option value="App">App</option>
             </select>
             <label htmlFor="genres">Genres:</label>
             <select
