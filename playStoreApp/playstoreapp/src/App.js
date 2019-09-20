@@ -19,6 +19,7 @@ class App extends Component {
 
   setGenre(genre) {
     this.setState({ genre });
+    console.log("setGenre ran");
   }
 
   handleSubmit(e) {

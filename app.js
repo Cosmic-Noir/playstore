@@ -7,7 +7,7 @@ const app = express();
 app.use(morgan("common"));
 app.use(cors());
 
-const apps = require("./appData/app-data");
+let apps = require("./appData/app-data");
 
 app.get("/apps", (req, res) => {
   const { sort, genres } = req.query;
@@ -25,15 +25,11 @@ app.get("/apps", (req, res) => {
   }
 
   if (genres) {
-    if (
-      !["Action", "Puzzle", "Strategy", "Casual", "Arcade", "Card"].includes(
-        sort
-      )
-    ) {
+    if (!["Action", "Puzzle", "Strategy", "Casual", "Arcade", "Card"]) {
       return res.status(400).send("Genre must be one of the options");
-    } else {
-      apps = apps.filter(app => app.Genres.includes(genres));
     }
+    apps = apps.filter(app => app.Genres.includes(genres));
+    console.log("A genre was selected");
   }
 
   res.json(apps);
