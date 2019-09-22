@@ -8,4 +8,13 @@ describe("Express App", () => {
       .get("/apps")
       .expect(200);
   });
+  it("should return an array", () => {
+    return supertest(app)
+      .get("/apps")
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .then(res => {
+        expect(res.body).to.be.an("array");
+      });
+  });
 });
