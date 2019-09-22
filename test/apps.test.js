@@ -17,4 +17,10 @@ describe("Express App", () => {
         expect(res.body).to.be.an("array");
       });
   });
+  it("should throw an error is sort does not equal options", () => {
+    return supertest(app)
+      .get("/apps")
+      .query({ sort: "MISTAKE" })
+      .expect(400, "Sort must be on of rating or app");
+  });
 });
