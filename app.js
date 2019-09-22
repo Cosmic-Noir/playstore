@@ -14,14 +14,18 @@ app.get("/apps", (req, res) => {
   let appList = apps;
 
   if (genre) {
-    if (!["Action", "Puzzle", "Strategy", "Casual", "Arcade", "Card"]) {
+    if (
+      !["Action", "Puzzle", "Strategy", "Casual", "Arcade", "Card"].includes(
+        genre
+      )
+    ) {
       return res.status(400).send("Genre must be one of the options");
     }
   }
 
   if (genre) {
     appList = appList.filter(app => app.Genres.includes(genre));
-    console.log("A genre was selected");
+    // console.log("A genre was selected");
   }
 
   if (sort) {
